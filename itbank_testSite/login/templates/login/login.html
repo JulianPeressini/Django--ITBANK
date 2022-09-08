@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%  static  'login/css/login-style.css'  %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>ITBANK - Ingresar</title>
+  </head>
+  <body
+    style="background-image: url('{% static 'login/img/background.png'  %}')"
+  >
+    <header class="main-header">
+      <a href="/">
+        <div class="main-logo-container">
+          <img
+            class="main-logo"
+            src="{% static 'login/img/logo_itbank.png'  %}"
+            alt=""
+          />
+        </div>
+      </a>
+      <div class="right-container">
+        <a href="/">
+          <button class="back">Volver</button>
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="content">
+        <div class="login">
+          <h1>Ingresa a tu cuenta</h1>
+          <img
+            class="users"
+            src="{% static 'login/img/icon_users.png'  %}"
+            alt=""
+          />
+          <form action="" method="post" class="fields">
+            {% csrf_token %}
+            <p>{{form.as_p}}</p>
+            {% for message in messages %}
+              <p class="error" id="messages">{{message}}</p>
+            {% endfor %}
+            <a class="password-recovery" href="{{ request.path }}">Olvide mi contraseña</a>
+            <input type="submit" class="login-btn" value="Ingresar"></input>
+          </form>
+        </div>
+        <div class="signup">
+          <div>
+            <h2>¿Aun no</h2>
+            <h2>estas registrado?</h2>
+            <h3>
+              Estas a 1 click de disfrutar de todos los beneficios de ITBANK
+            </h3>
+            <a href="{{ request.path }}">
+              <button class="signup-btn">Registrarse</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

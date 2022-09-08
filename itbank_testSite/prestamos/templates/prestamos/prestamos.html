@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{%  static  'prestamos/css/prestamos-style.css'  %}"
+      rel="stylesheet"
+    />
+    <link href="{%  static  'clientes/css/carousel.css'  %}" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Prestamos</title>
+  </head>
+  <body
+    style="
+      background-image: url('{% static 'prestamos/img/background.png'  %}');
+    "
+  >
+    <header class="main-header">
+      <a href="/">
+        <div class="main-logo-container">
+          <img
+            class="main-logo"
+            src="{% static 'prestamos/img/logo_itbank.png'  %}"
+            alt=""
+          />
+        </div>
+      </a>
+
+      <div class="right-container">
+        <a href="/">
+          <button class="back">Volver</button>
+        </a>
+      </div>
+    </header>
+
+    <div class="content">
+      <h1>Solicitar prestamo</h1>
+      <hr />
+      <div class="form-container"><form action="" method="post" class="fields">
+        {% csrf_token %} {% for field in form %}
+        <label class="input-label" for="field.auto_id"> {{field.label}}</label>
+        <div class="field-container">{{field}}</div>
+        {% for error in field.errors %}
+        <div class="error-container">
+          <p class="error" id="messages">{{error}}</p>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        
+        <input type="submit" class="prestamo-btn" value="Solicitar"></input>
+      </form></div>
+    </div>
+  </body>
+</html>

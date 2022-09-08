@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{%  static  'clientes/css/index-style.css'  %}"
+      rel="stylesheet"
+    />
+    <link href="{%  static  'clientes/css/carousel.css'  %}" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>ITBANK</title>
+  </head>
+  <body
+    style="background-image: url('{% static 'clientes/img/background.png'  %}')"
+  >
+    <header class="main-header">
+      <a href="/">
+        <div class="main-logo-container">
+          <img
+            class="main-logo"
+            src="{% static 'clientes/img/logo_itbank.png'  %}"
+            alt=""
+          />
+        </div>
+      </a>
+      <div class="right-container">
+        {% if request.user.is_authenticated %}
+        <div class="user-welcome">
+          Bienvenido/a, {{current_user.customer_name}}
+          {{current_user.customer_surname}}!
+        </div>
+        <a href="logout/"><button class="logout">X</button></a>
+        {% else %}
+        <a href="login/"><button class="login">Ingresar</button></a>
+        {% endif %}
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="carousel" data-carousel>
+        <button class="carousel-button prev" data-carousel-button="prev">
+          &lt
+        </button>
+        <button class="carousel-button next" data-carousel-button="next">
+          &gt
+        </button>
+        <ul id="indicators" data-indicators>
+          <li class="indicator" data-carousel-indicator="0" data-active>
+            <button></button>
+          </li>
+          <li class="indicator" data-carousel-indicator="1">
+            <button></button>
+          </li>
+          <li class="indicator" data-carousel-indicator="2">
+            <button></button>
+          </li>
+        </ul>
+        <ul id="slides" data-slides>
+          <li class="slide" data-carousel-slide="0" data-active>
+            <img
+              src="https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?crop=entropy&cs=srgb&dl=pexels-anna-shvets-4482900.jpg&fit=crop&fm=jpg&h=300&w=1200"
+              alt=""
+            />
+          </li>
+          <li class="slide" data-carousel-slide="1">
+            <img
+              src="https://images.pexels.com/photos/826349/pexels-photo-826349.jpeg?crop=entropy&cs=srgb&dl=pexels-andrea-piacquadio-826349.jpg&fit=crop&fm=jpg&h=500&w=1400"
+              alt=""
+            />
+          </li>
+          <li class="slide" data-carousel-slide="2">
+            <img
+              src="https://images.pexels.com/photos/359757/pexels-photo-359757.jpeg?cs=srgb&dl=pexels-tofroscom-359757.jpg&fm=jpg&h=300&w=1200&fit=crop"
+              alt=""
+            />
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        {% if request.user.is_authenticated %}
+
+        <a href="prestamos/">
+          <div class="nav-container">
+            <img
+              class="nav-icon"
+              src="{%  static  'clientes/img/prestamo.jpg' %}"
+              alt="prestamo bancario"
+            />
+            <div>PRÉSTAMOS</div>
+          </div>
+        </a>
+
+        {% else %}
+
+        <h1>Lorem Ipsumn</h1>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et nisl
+          sodales, ornare nisi posuere, convallis orci. Vivamus dolor erat,
+          luctus ut turpis cursus, pretium aliquet mi. In pretium orci risus,
+          rutrum hendrerit nisi condimentum ac. Sed lacinia vitae felis eget
+          bibendum. Nam vel odio in lacus mollis vestibulum ut et tellus.
+          Suspendisse potenti. Suspendisse nec tortor ut ipsum venenatis maximus
+          eleifend non erat. Aliquam metus lacus, interdum vel consequat sit
+          amet, bibendum vitae libero.
+        </p>
+
+        {% endif %}
+      </div>
+    </main>
+
+    <script src="{%  static  'clientes/javascript/image-sliding.js' %}"></script>
+  </body>
+</html>
