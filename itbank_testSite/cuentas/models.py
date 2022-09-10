@@ -4,12 +4,12 @@ from django.db import models
 
 
 class Cuenta(models.Model):
-    account_id = models.AutoField(primary_key=True)
+    account_id = models.IntegerField(primary_key=True)
     customer_id = models.IntegerField()
     balance = models.IntegerField()
     iban = models.CharField(max_length=100)
     account_type = models.ForeignKey(
-        'TipoCuenta', models.DO_NOTHING, db_column='account_type', blank=True)
+        'TipoCuenta', models.CASCADE, blank=True)
 
     class Meta:
         managed = False
@@ -21,7 +21,7 @@ class Cuenta(models.Model):
 
 
 class TipoCuenta(models.Model):
-    account_type_id = models.AutoField(primary_key=True, blank=True)
+    account_type_id = models.IntegerField(primary_key=True)
     account_type_desc = models.TextField()
 
     class Meta:

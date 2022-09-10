@@ -1,5 +1,3 @@
-from pyexpat import model
-from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -8,16 +6,14 @@ from django.contrib.auth.models import User
 
 class Cliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
-    customer_id = models.AutoField(primary_key=True)
-    customer_name = models.TextField()
-    customer_surname = models.TextField()  # This field type is a guess.
-    # Field name made lowercase.
-    customer_dni = models.TextField(db_column='customer_DNI')
-    dob = models.TextField(blank=True, null=True)
+    customer_id = models.IntegerField(primary_key=True)
+    customer_name = models.CharField(max_length=255)
+    customer_surname = models.CharField(max_length=255)
+    customer_dni = models.CharField(db_column='customer_DNI', max_length=255)
+    dob = models.CharField(blank=True, null=True, max_length=255)
     branch_id = models.IntegerField()
     direccion = models.ForeignKey(
         'Direccion', models.CASCADE, null=True)
-    # This field type is a guess.
     client_type = models.ForeignKey(
         'TipoCliente', on_delete=models.CASCADE, null=True)
 
@@ -42,11 +38,11 @@ class TipoCliente(models.Model):
 
 
 class Direccion(models.Model):
-    direccion_id = models.AutoField(primary_key=True)
-    dir_calle = models.TextField()
-    dir_city = models.TextField()
-    dir_province = models.TextField()
-    dir_country = models.TextField()
+    direccion_id = models.IntegerField(primary_key=True)
+    dir_calle = models.CharField(max_length=255)
+    dir_city = models.CharField(max_length=255)
+    dir_province = models.CharField(max_length=255)
+    dir_country = models.CharField(max_length=255)
 
     class Meta:
         managed = False

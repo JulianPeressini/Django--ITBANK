@@ -19,6 +19,9 @@ from django.urls import path
 from clientes import views as clientViews
 from login import views as loginViews
 from prestamos import views as prestamosViews
+from cuentas import views as cuentaViews
+from tarjetas import views as tarjetaViews
+from sucursal import views as sucursalViews
 
 urlpatterns = [
     path('', clientViews.home, name="home"),
@@ -26,4 +29,11 @@ urlpatterns = [
     path('logout/', loginViews.LogoutPage, name="logout"),
     path('prestamos/', prestamosViews.Prestamos, name="prestamos"),
     path('admin/', admin.site.urls),
+    path('api/clientes/<int:pk>', clientViews.ClienteDetails.as_view()),
+    path('api/cuentas/<int:pk>', cuentaViews.CuentaDetails.as_view()),
+    path('api/prestamos/<int:pk>', prestamosViews.PrestamoDetails.as_view()),
+    path('api/prestamos/', prestamosViews.PrestamoList.as_view()),
+    path('api/sucursal/<int:pk>', prestamosViews.SucursalPrestamoList.as_view()),
+    path('api/tarjetas/<int:pk>', tarjetaViews.ClientTarjetaList.as_view()),
+    path('api/sucursales/', sucursalViews.SucursalList.as_view()),
 ]
